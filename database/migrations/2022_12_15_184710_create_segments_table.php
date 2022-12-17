@@ -17,7 +17,7 @@ class CreateSegmentsTable extends Migration
             $table->id();
             $table->string('name');
             $table->json('rule');
-            $table->tinyInteger('status')->default(0);
+            $table->tinyInteger('status')->default(1);
             $table->bigInteger('created_by');
             $table->timestamps();
         });

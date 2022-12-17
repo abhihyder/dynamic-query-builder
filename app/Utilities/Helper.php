@@ -38,6 +38,7 @@ function getSqlConditionalValue($condition, $value)
         "end_with" => "%" . $value,
         "does_not_start_with" => $value . "%",
         "does_not_end_with" => "%" . $value,
+        "between" => [date("Y-m-d 23:59:59"), date("Y-m-d 00:00:00", strtotime($value))],
     ];
 
     if (array_key_exists($condition, $rule)) {

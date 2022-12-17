@@ -74,9 +74,17 @@ class SegmentController extends Controller
                             if ($item['column'] && $item['condition'] && $item['value']) {
 
                                 if ($key == 0) {
-                                    $query->where($item['column'], getSqlCondition($item['condition']), getSqlConditionalValue($item['condition'], $item['value']));
+                                    if ($item['condition'] != 'between') {
+                                        $query->where($item['column'], getSqlCondition($item['condition']), getSqlConditionalValue($item['condition'], $item['value']));
+                                    } else {
+                                        $query->whereBetween($item['column'], getSqlConditionalValue($item['condition'], $item['value']));
+                                    }
                                 } else {
-                                    $query->orWhere($item['column'], getSqlCondition($item['condition']), getSqlConditionalValue($item['condition'], $item['value']));
+                                    if ($item['condition'] != 'between') {
+                                        $query->orWhere($item['column'], getSqlCondition($item['condition']), getSqlConditionalValue($item['condition'], $item['value']));
+                                    } else {
+                                        $query->orWhereBetween($item['column'], getSqlConditionalValue($item['condition'], $item['value']));
+                                    }
                                 }
                             }
                         }

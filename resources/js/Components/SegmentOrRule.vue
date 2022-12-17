@@ -10,11 +10,7 @@
   </div>
   <div class="col-md-3 my-1">
     <select class="form-select">
-      <option
-        v-for="option in select_options"
-        :key="index"
-        :value="option.value"
-      >
+      <option v-for="option in select_options" :value="option.value">
         {{ option.label }}
       </option>
     </select>
@@ -29,7 +25,7 @@
   </div>
 </template>
     
-  <script>
+<script>
 import FormInput from "./FormInput.vue";
 import FormLabel from "./FormLabel.vue";
 
