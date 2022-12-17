@@ -1,0 +1,11 @@
+.app-content {
+    padding-bottom: 60px;
+}
+
+.app-footer {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin-top: 50px
+}
