@@ -23,5 +23,9 @@
         "tailwindcss": "^3.0.18",
         "vue": "^3.2.31",
         "vue-loader": "^17.0.0"
+    },
+    "dependencies": {
+        "moment": "^2.29.4",
+        "vuejs3-datepicker": "^1.0.13"
     }
 }

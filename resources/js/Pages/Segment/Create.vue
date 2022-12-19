@@ -27,13 +27,21 @@
                 </div>
                 <div class="col-md-8">
                   <FormInput
-                    name="segment_name"
+                    @input="updateSegmentName($event)"
                     placeholder="Enter segment name"
                   />
                 </div>
               </div>
 
-              <SegmentRule />
+              <SegmentRule
+                :rules="segmentForm.rule"
+                @add-and-rule="addAndRule"
+                @add-or-rule="addOrRule"
+                @remove-or-rule="removeOrRule"
+                @column-change="columnChange"
+                @condition-change="conditionChange"
+                @enter-value="enterValue"
+              />
 
               <div class="form-group row mb-5 mt-12">
                 <div class="col-md-2 my-1">
@@ -78,31 +86,58 @@ export default {
   },
 
   data() {
+    let structure = { column: "created_at", condition: "", value: "" };
     return {
-      //Demo form data structure --------------------------------
+      structure: JSON.parse(JSON.stringify(structure)),
       segmentForm: {
-        name: "Demo",
-        rule: [
-          [
-            { column: "birth_day", condition: "between", value: "1974-12-17" },
-            { column: "first_name", condition: "contain", value: "abh" },
-          ],
-          [{ column: "email", condition: "contain", value: "abhi@" }],
-        ],
+        name: "",
+        rule: [[JSON.parse(JSON.stringify(structure))]],
       },
     };
   },
 
   methods: {
     segmentSubmit() {
+      console.log(this.segmentForm);
       axios
         .post(route("segment.store"), this.segmentForm)
         .then((response) => {
-          console.log(response);
+          toastr.success("Segment created successfully!");
         })
         .catch((error) => {
-          console.log(error);
+          toastr.error("Something went wrong!");
         });
+    },
+    resetForm() {
+      this.segmentForm.name = "";
+      this.segmentForm.rule = [[JSON.parse(JSON.stringify(this.structure))]];
+    },
+    addAndRule: function () {
+      this.segmentForm.rule.push([JSON.parse(JSON.stringify(this.structure))]);
+    },
+    addOrRule: function (index) {
+      this.segmentForm.rule[index].push(
+        JSON.parse(JSON.stringify(this.structure))
+      );
+    },
+    removeOrRule(orIndex, andIndex) {
+      this.segmentForm.rule[andIndex].splice(orIndex, 1);
+      if (this.segmentForm.rule[andIndex].length == 0) {
+        this.segmentForm.rule.splice(andIndex, 1);
+      }
+    },
+    updateSegmentName($event) {
+      let name = $event.target.value;
+      this.segmentForm.name = name;
+    },
+    columnChange(column_name, orIndex, andIndex) {
+      this.segmentForm.rule[andIndex][orIndex].column = column_name;
+    },
+    conditionChange(condition, orIndex, andIndex) {
+      this.segmentForm.rule[andIndex][orIndex].condition = condition;
+    },
+    enterValue(value, orIndex, andIndex) {
+      this.segmentForm.rule[andIndex][orIndex].value = value;
     },
   },
 };

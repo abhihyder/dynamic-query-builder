@@ -4,15 +4,25 @@
       <FormLabel label="Segment Logic" />
     </div>
     <div class="col-md-8">
-      <SegmentAndRule :deletable="false" />
-      <SegmentAndRule v-for="and_rule in and_rules" :key="and_rule" />
+      <SegmentAndRule
+        :and-rules="rules"
+        @add-or-rule="addOrRule"
+        @remove-or-rule="removeOrRule"
+        @column-change="columnChange"
+        @condition-change="conditionChange"
+        @enter-value="enterValue"
+      />
     </div>
   </div>
 
   <div class="form-group row mb-5 mt-12">
     <div class="col-md-2 my-1"></div>
     <div class="col-md-2 my-1">
-      <a href="javascript:;" @click="addAndRule" class="btn btn-light-primary">
+      <a
+        href="javascript:;"
+        @click="$emit('addAndRule')"
+        class="btn btn-light-primary"
+      >
         <i class="la la-plus"></i>AND
       </a>
     </div>
@@ -25,6 +35,9 @@ import FormLabel from "./FormLabel.vue";
 import SegmentAndRule from "./SegmentAndRule.vue";
 
 export default {
+  props: {
+    rules: Object,
+  },
   data() {
     return {
       and_rules: 0,
@@ -36,10 +49,21 @@ export default {
     FormLabel,
     SegmentAndRule,
   },
-
   methods: {
-    addAndRule: function () {
-      this.and_rules += 1;
+    addOrRule: function (index) {
+      this.$emit("addOrRule", index);
+    },
+    removeOrRule(orIndex, andIndex) {
+      this.$emit("removeOrRule", orIndex, andIndex);
+    },
+    columnChange(column_name, orIndex, andIndex) {
+      this.$emit("columnChange", column_name, orIndex, andIndex);
+    },
+    conditionChange(condition, orIndex, andIndex) {
+      this.$emit("conditionChange", condition, orIndex, andIndex);
+    },
+    enterValue(value, orIndex, andIndex) {
+      this.$emit("enterValue", value, orIndex, andIndex);
     },
   },
 };

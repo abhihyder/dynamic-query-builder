@@ -5,7 +5,7 @@ function getSqlCondition($condition)
     $sqlCondition = "=";
 
     $rule = [
-        "no" => "=",
+        "on" => "=",
         "is" => "=",
         "is_not" => "!=",
         "before" => "<",
@@ -32,6 +32,11 @@ function getSqlConditionalValue($condition, $value)
     $ConditionalValue = $value;
 
     $rule = [
+        "on" => date("Y-m-d", strtotime($value)),
+        "before" => date("Y-m-d", strtotime($value)),
+        "on_or_before" => date("Y-m-d", strtotime($value)),
+        "after" => date("Y-m-d", strtotime($value)),
+        "on_or_after" => date("Y-m-d", strtotime($value)),
         "contain" => "%" . $value . "%",
         "does_not_contain" => "%" . $value . "%",
         "start_with" => $value . "%",

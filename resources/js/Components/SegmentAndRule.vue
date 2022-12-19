@@ -1,13 +1,27 @@
 <template>
-  <div class="row mb-12">
-    <SegmentOrRule :deletable="deletable" />
+  <div
+    class="row mb-12"
+    v-for="(or_rules, andIndex) in andRules"
+    :key="andIndex"
+  >
     <SegmentOrRule
-      v-for="or_rule in or_rules"
-      :key="or_rule"
-      :deletable="true"
+      v-for="(orRule, orIndex) in or_rules"
+      :key="orIndex"
+      :or-rule="orRule"
+      :and-index="andIndex"
+      :or-index="orIndex"
+      @remove-or-rule="removeOrRule"
+      @column-change="columnChange"
+      @condition-change="conditionChange"
+      @enter-value="enterValue"
     />
+
     <div class="col-md-2 my-1">
-      <button class="btn btn-light-primary" type="button" @click="addOrRule">
+      <button
+        class="btn btn-light-primary"
+        type="button"
+        @click="$emit('addOrRule', andIndex)"
+      >
         <i class="la la-plus"></i>OR
       </button>
     </div>
@@ -21,14 +35,12 @@ import SegmentOrRule from "./SegmentOrRule.vue";
 
 export default {
   props: {
-    deletable: {
-      type: Boolean,
-      default: true,
-    },
+    andRules: Object,
   },
   data() {
     return {
       or_rules: 0,
+      demo: [15, 58, 8],
     };
   },
 
@@ -37,9 +49,19 @@ export default {
     FormLabel,
     SegmentOrRule,
   },
+
   methods: {
-    addOrRule: function () {
-      this.or_rules += 1;
+    removeOrRule(orIndex, andIndex) {
+      this.$emit("removeOrRule", orIndex, andIndex);
+    },
+    columnChange(column_name, orIndex, andIndex) {
+      this.$emit("columnChange", column_name, orIndex, andIndex);
+    },
+    conditionChange(condition, orIndex, andIndex) {
+      this.$emit("conditionChange", condition, orIndex, andIndex);
+    },
+    enterValue(value, orIndex, andIndex) {
+      this.$emit("enterValue", value, orIndex, andIndex);
     },
   },
 };

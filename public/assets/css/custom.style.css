@@ -9,3 +9,19 @@
     bottom: 0;
     margin-top: 50px
 }
+
+.vuejs3-datepicker.form-control {
+    background: transparent;
+    padding: 0;
+    line-height: 1;
+}
+
+.vuejs3-datepicker #calendar-div {
+    background-color: transparent !important;
+}
+
+.vuejs3-datepicker__value {
+    padding: 12px 5px;
+    min-width: 100% !important;
+    border: none !important;
+}
