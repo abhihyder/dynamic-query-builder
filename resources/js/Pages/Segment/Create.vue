@@ -98,12 +98,14 @@ export default {
 
   methods: {
     segmentSubmit() {
-      console.log(this.segmentForm);
       axios
         .post(route("segment.store"), this.segmentForm)
-        .then((response) => {
-          toastr.success("Segment created successfully!");
-        })
+        .then(
+          function (response) {
+            toastr.success("Segment created successfully!");
+            this.resetForm();
+          }.bind(this)
+        )
         .catch((error) => {
           toastr.error("Something went wrong!");
         });

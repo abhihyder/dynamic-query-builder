@@ -671,9 +671,6 @@ select {
   -webkit-print-color-adjust: exact;
           print-color-adjust: exact;
 }
-.collapse {
-  visibility: collapse;
-}
 .fixed {
   position: fixed;
 }
@@ -735,21 +732,29 @@ select {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
 }
-.my-5 {
-  margin-top: 1.25rem;
-  margin-bottom: 1.25rem;
-}
-.mx-5 {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
+.my-0 {
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 .my-2 {
   margin-top: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.my-0 {
-  margin-top: 0px;
-  margin-bottom: 0px;
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+.my-14 {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+.my-7 {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -823,35 +828,26 @@ select {
 .mb-10 {
   margin-bottom: 2.5rem;
 }
-.mb-6 {
-  margin-bottom: 1.5rem;
-}
-.mb-0 {
-  margin-bottom: 0px;
-}
 .mb-4 {
   margin-bottom: 1rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
 }
 .mb-7 {
   margin-bottom: 1.75rem;
 }
-.mb-8 {
-  margin-bottom: 2rem;
-}
-.mt-10 {
-  margin-top: 2.5rem;
-}
-.mt-5 {
-  margin-top: 1.25rem;
+.mb-11 {
+  margin-bottom: 2.75rem;
 }
 .mb-9 {
   margin-bottom: 2.25rem;
 }
+.mb-8 {
+  margin-bottom: 2rem;
+}
 .mb-1 {
   margin-bottom: 0.25rem;
-}
-.mt-1 {
-  margin-top: 0.25rem;
 }
 .block {
   display: block;
@@ -861,6 +857,9 @@ select {
 }
 .inline-flex {
   display: inline-flex;
+}
+.table {
+  display: table;
 }
 .grid {
   display: grid;
@@ -999,8 +998,8 @@ select {
 .justify-between {
   justify-content: space-between;
 }
-.gap-2 {
-  gap: 0.5rem;
+.gap-3 {
+  gap: 0.75rem;
 }
 .space-x-8 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1011,9 +1010,6 @@ select {
   --tw-space-y-reverse: 0;
   margin-top: calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(0.25rem * var(--tw-space-y-reverse));
-}
-.overflow-auto {
-  overflow: auto;
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1040,6 +1036,9 @@ select {
 }
 .border-4 {
   border-width: 4px;
+}
+.border-0 {
+  border-width: 0px;
 }
 .border-t {
   border-top-width: 1px;
@@ -1107,6 +1106,9 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(156 163 175 / var(--tw-bg-opacity));
 }
+.bg-transparent {
+  background-color: transparent;
+}
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
 }
@@ -1119,11 +1121,8 @@ select {
 .p-2 {
   padding: 0.5rem;
 }
-.p-0 {
-  padding: 0px;
-}
-.p-7 {
-  padding: 1.75rem;
+.p-10 {
+  padding: 2.5rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1165,25 +1164,21 @@ select {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
-.px-9 {
-  padding-left: 2.25rem;
-  padding-right: 2.25rem;
-}
-.px-8 {
-  padding-left: 2rem;
-  padding-right: 2rem;
-}
-.py-5 {
-  padding-top: 1.25rem;
-  padding-bottom: 1.25rem;
-}
 .px-5 {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
-.px-0 {
-  padding-left: 0px;
-  padding-right: 0px;
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+}
+.px-7 {
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+.py-5 {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
 }
 .pt-8 {
   padding-top: 2rem;
@@ -1224,29 +1219,17 @@ select {
 .pb-0 {
   padding-bottom: 0px;
 }
-.pb-5 {
-  padding-bottom: 1.25rem;
-}
-.pt-10 {
-  padding-top: 2.5rem;
-}
-.pb-10 {
-  padding-bottom: 2.5rem;
-}
-.pt-7 {
-  padding-top: 1.75rem;
-}
-.pb-2 {
-  padding-bottom: 0.5rem;
-}
-.pb-6 {
-  padding-bottom: 1.5rem;
-}
 .text-left {
   text-align: left;
 }
 .text-center {
   text-align: center;
+}
+.text-start {
+  text-align: start;
+}
+.text-end {
+  text-align: end;
 }
 .align-middle {
   vertical-align: middle;
@@ -1366,9 +1349,6 @@ select {
 .opacity-75 {
   opacity: 0.75;
 }
-.opacity-50 {
-  opacity: 0.5;
-}
 .opacity-25 {
   opacity: 0.25;
 }
@@ -1407,6 +1387,9 @@ select {
 }
 .ring-opacity-5 {
   --tw-ring-opacity: 0.05;
+}
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .transition {
   transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-backdrop-filter;

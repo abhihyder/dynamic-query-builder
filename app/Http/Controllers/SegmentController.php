@@ -13,7 +13,19 @@ class SegmentController extends Controller
 {
     public function index()
     {
+        return Inertia::render('Segment/Index');
     }
+
+    public function getSegment(Request $request)
+    {
+        try {
+            $segments = Segment::where('status', 1)->get();
+            return $this->responseWithData($segments);
+        } catch (\Exception $ex) {
+            return $this->responseInternalError($ex->getMessage());
+        }
+    }
+
 
     public function create()
     {
@@ -57,11 +69,11 @@ class SegmentController extends Controller
     {
     }
 
-    public function segmentWiseSubscriber($segment_id)
+    public function segmentWiseSubscriber(Request $request)
     {
         try {
 
-            $segment =  Segment::findOrFail($segment_id);
+            $segment =  Segment::findOrFail($request->segment_id);
 
             $rules = json_decode($segment->rule, true);
 

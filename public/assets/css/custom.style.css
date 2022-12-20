@@ -25,3 +25,18 @@
     min-width: 100% !important;
     border: none !important;
 }
+
+.loginPageContainer {
+    background-image: url('/assets/media/auth/bg4.jpg');
+    background-size: cover;
+}
+
+
+[data-theme="dark"] .loginPageContainer {
+    background-image: url('/assets/media/auth/bg4-dark.jpg');
+    background-size: cover;
+}
+
+.loginPageContainer .flex-column.flex-column-fluid {
+    height: 100vh;
+}

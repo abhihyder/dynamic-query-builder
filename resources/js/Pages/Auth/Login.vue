@@ -1,67 +1,212 @@
 <script setup>
-import BreezeButton from '@/Components/Button.vue';
-import BreezeCheckbox from '@/Components/Checkbox.vue';
-import BreezeGuestLayout from '@/Layouts/Guest.vue';
-import BreezeInput from '@/Components/Input.vue';
-import BreezeLabel from '@/Components/Label.vue';
-import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import { Head, Link, useForm } from "@inertiajs/inertia-vue3";
 
 defineProps({
-    canResetPassword: Boolean,
-    status: String,
+  canResetPassword: Boolean,
+  status: String,
 });
 
 const form = useForm({
-    email: '',
-    password: '',
-    remember: false
+  email: "",
+  password: "",
+  remember: false,
 });
 
 const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
+  form.post(route("login"), {
+    onFinish: () => form.reset("password"),
+  });
 };
 </script>
 
 <template>
-    <BreezeGuestLayout>
-        <Head title="Log in" />
+  <div class="d-flex flex-column flex-root loginPageContainer" id="kt_app_root">
+    <!--begin::Page bg image-->
 
-        <BreezeValidationErrors class="mb-4" />
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
+    <!--end::Page bg image-->
+    <!--begin::Authentication - Sign-in -->
+    <div class="d-flex flex-column flex-column-fluid flex-lg-row">
+      <!--begin::Aside-->
+      <div class="d-flex flex-center w-lg-50 pt-15 pt-lg-0 px-10">
+        <!--begin::Aside-->
+        <div class="d-flex flex-center flex-lg-start flex-column">
+          <!--begin::Logo-->
+          <a href="../../demo1/dist/index.html" class="mb-7">
+            <img alt="Logo" src="assets/media/logos/custom-3.svg" />
+          </a>
+          <!--end::Logo-->
+          <!--begin::Title-->
+          <h2 class="text-white fw-normal m-0">
+            Branding tools designed for your business
+          </h2>
+          <!--end::Title-->
         </div>
+        <!--begin::Aside-->
+      </div>
+      <!--begin::Aside-->
+      <!--begin::Body-->
+      <div class="d-flex flex-center w-lg-50 p-10">
+        <!--begin::Card-->
+        <div class="card rounded-3 w-md-550px">
+          <!--begin::Card body-->
+          <div class="card-body p-10 p-lg-20">
+            <!--begin::Form-->
+            <form class="form w-100" @submit.prevent="submit">
+              <!--begin::Heading-->
+              <div class="text-center mb-11">
+                <!--begin::Title-->
+                <h1 class="text-dark fw-bolder mb-3">Sign In</h1>
+                <!--end::Title-->
+                <!--begin::Subtitle-->
+                <div class="text-gray-500 fw-semibold fs-6">
+                  Your Social Campaigns
+                </div>
+                <!--end::Subtitle=-->
+              </div>
+              <!--begin::Heading-->
+              <!--begin::Login options-->
+              <div class="row g-3 mb-9">
+                <!--begin::Col-->
+                <div class="col-md-6">
+                  <!--begin::Google link=-->
+                  <a
+                    href="#"
+                    class="
+                      btn
+                      btn-flex
+                      btn-outline
+                      btn-text-gray-700
+                      btn-active-color-primary
+                      bg-state-light
+                      flex-center
+                      text-nowrap
+                      w-100
+                    "
+                  >
+                    <img
+                      alt="Logo"
+                      src="assets/media/svg/brand-logos/google-icon.svg"
+                      class="h-15px me-3"
+                    />Sign in with Google</a
+                  >
+                  <!--end::Google link=-->
+                </div>
+                <!--end::Col-->
+                <!--begin::Col-->
+                <div class="col-md-6">
+                  <!--begin::Google link=-->
+                  <a
+                    href="#"
+                    class="
+                      btn
+                      btn-flex
+                      btn-outline
+                      btn-text-gray-700
+                      btn-active-color-primary
+                      bg-state-light
+                      flex-center
+                      text-nowrap
+                      w-100
+                    "
+                  >
+                    <img
+                      alt="Logo"
+                      src="assets/media/svg/brand-logos/apple-black.svg"
+                      class="theme-light-show h-15px me-3"
+                    />
+                    <img
+                      alt="Logo"
+                      src="assets/media/svg/brand-logos/apple-black-dark.svg"
+                      class="theme-dark-show h-15px me-3"
+                    />Sign in with Apple</a
+                  >
+                  <!--end::Google link=-->
+                </div>
+                <!--end::Col-->
+              </div>
+              <!--end::Login options-->
+              <!--begin::Separator-->
+              <div class="separator separator-content my-14">
+                <span class="w-125px text-gray-500 fw-semibold fs-7"
+                  >Or with email</span
+                >
+              </div>
+              <!--end::Separator-->
+              <!--begin::Input group=-->
+              <div class="fv-row mb-8">
+                <!--begin::Email-->
+                <input
+                  type="email"
+                  placeholder="Email"
+                  v-model="form.email"
+                  required
+                  autofocus
+                  autocomplete="username"
+                  class="form-control bg-transparent"
+                />
+                <!--end::Email-->
+              </div>
+              <!--end::Input group=-->
+              <div class="fv-row mb-3">
+                <!--begin::Password-->
+                <input
+                  type="password"
+                  placeholder="Password"
+                  v-model="form.password"
+                  required
+                  autocomplete="current-password"
+                  class="form-control bg-transparent"
+                />
+                <!--end::Password-->
+              </div>
+              <!--end::Input group=-->
+              <!--begin::Wrapper-->
+              <div
+                class="
+                  d-flex
+                  flex-stack flex-wrap
+                  gap-3
+                  fs-base
+                  fw-semibold
+                  mb-8
+                "
+              >
+                <div></div>
+                <!--begin::Link-->
 
-        <form @submit.prevent="submit">
-            <div>
-                <BreezeLabel for="email" value="Email" />
-                <BreezeInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <BreezeLabel for="password" value="Password" />
-                <BreezeInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <BreezeCheckbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
-                </Link>
-
-                <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </BreezeButton>
-            </div>
-        </form>
-    </BreezeGuestLayout>
+                <!--end::Link-->
+              </div>
+              <!--end::Wrapper-->
+              <!--begin::Submit button-->
+              <div class="d-grid mb-10">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  :class="{ 'opacity-25': form.processing }"
+                  :disabled="form.processing"
+                >
+                  <!--begin::Indicator label-->
+                  <span class="indicator-label">Sign In</span>
+                  <!--end::Indicator label-->
+                  <!--begin::Indicator progress-->
+                  <span class="indicator-progress"
+                    >Please wait...
+                    <span
+                      class="spinner-border spinner-border-sm align-middle ms-2"
+                    ></span
+                  ></span>
+                  <!--end::Indicator progress-->
+                </button>
+              </div>
+            </form>
+            <!--end::Form-->
+          </div>
+          <!--end::Card body-->
+        </div>
+        <!--end::Card-->
+      </div>
+      <!--end::Body-->
+    </div>
+    <!--end::Authentication - Sign-in-->
+  </div>
 </template>
